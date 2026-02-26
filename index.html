@@ -1,1 +1,2558 @@
+<!doctype html>
+<html lang="de-AT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f1ea" />
+  <title>VELVET NAIL ATELIER • Wien 1010 (Demo)</title>
+  <meta name="description" content="Premium Nagelstudio Demo-Website im 1. Bezirk Wien: luxuriös, clean, feminin. Leistungen, Galerie, Preise, Bewertungen, Kontakt." />
 
+  <!-- Minimal & reliable fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg: #fbf7f2;
+      --surface: rgba(255,255,255,.72);
+      --surface-2: rgba(255,255,255,.55);
+      --ink: #1a1714;
+      --muted: rgba(26,23,20,.72);
+      --muted-2: rgba(26,23,20,.55);
+      --line: rgba(26,23,20,.10);
+      --line-2: rgba(26,23,20,.16);
+
+      --nude: #f2e7dc;
+      --cream: #fff8ef;
+      --beige: #e8dccf;
+
+      --gold: #c9a56a;
+      --gold-2: #b68a45;
+
+      --shadow: 0 18px 55px rgba(18, 12, 6, .12);
+      --shadow-soft: 0 10px 30px rgba(18, 12, 6, .10);
+
+      --radius: 22px;
+      --radius-lg: 28px;
+
+      --serif: "Fraunces", ui-serif, Georgia, serif;
+      --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+
+      --container: 1160px;
+
+      --step--1: clamp(.86rem, .78rem + .25vw, .98rem);
+      --step-0: clamp(1rem, .9rem + .35vw, 1.1rem);
+      --step-1: clamp(1.15rem, 1.05rem + .55vw, 1.35rem);
+      --step-2: clamp(1.35rem, 1.2rem + .8vw, 1.75rem);
+      --step-3: clamp(1.65rem, 1.4rem + 1.2vw, 2.25rem);
+      --step-4: clamp(2.05rem, 1.65rem + 1.8vw, 3rem);
+      --step-5: clamp(2.6rem, 2rem + 2.8vw, 4rem);
+
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --ease-2: cubic-bezier(.16,1,.3,1);
+
+      --header-h: 78px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(201,165,106,.14), transparent 55%),
+        radial-gradient(900px 600px at 90% 12%, rgba(242,231,220,.9), transparent 60%),
+        radial-gradient(800px 600px at 60% 100%, rgba(201,165,106,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), #fff 65%);
+      overflow-x: hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    button{ font: inherit; }
+    img{ max-width: 100%; display: block; }
+
+    /* Accessibility & focus */
+    :focus-visible{
+      outline: 2px solid rgba(201,165,106,.9);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      *{
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .parallax{ transform: none !important; }
+    }
+
+    /* Layout */
+    .container{
+      width: min(100% - 2rem, var(--container));
+      margin-inline: auto;
+    }
+
+    .section{
+      padding: clamp(3.2rem, 2.6rem + 3vw, 6rem) 0;
+      position: relative;
+    }
+
+    .kicker{
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      color: var(--muted-2);
+    }
+
+    .h1{
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: var(--step-5);
+      line-height: 1.04;
+      letter-spacing: -.02em;
+      margin: .45rem 0 .9rem;
+    }
+
+    .h2{
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: var(--step-4);
+      line-height: 1.12;
+      letter-spacing: -.02em;
+      margin: .2rem 0 1rem;
+    }
+
+    .sub{
+      font-size: var(--step-1);
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .muted{ color: var(--muted); }
+    .muted2{ color: var(--muted-2); }
+
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .45rem .7rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 12px 30px rgba(18,12,6,.08);
+      font-size: .92rem;
+      color: rgba(26,23,20,.78);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .42rem .6rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(201,165,106,.22), rgba(255,255,255,.62));
+      border: 1px solid rgba(201,165,106,.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 16px 40px rgba(18,12,6,.10);
+      font-size: .9rem;
+      color: rgba(26,23,20,.88);
+    }
+
+    /* Buttons */
+    .btn{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      padding: .9rem 1.05rem;
+      border-radius: 999px;
+      border: 1px solid var(--line-2);
+      background: rgba(255,255,255,.65);
+      color: var(--ink);
+      font-weight: 600;
+      letter-spacing: .01em;
+      cursor: pointer;
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease), background .22s var(--ease), border-color .22s var(--ease);
+      user-select: none;
+      touch-action: manipulation;
+      box-shadow: 0 14px 35px rgba(18,12,6,.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 45px rgba(18,12,6,.14);
+      border-color: rgba(201,165,106,.35);
+    }
+    .btn:active{ transform: translateY(0); box-shadow: 0 10px 24px rgba(18,12,6,.12); }
+
+    .btn.primary{
+      border-color: rgba(201,165,106,.55);
+      background:
+        radial-gradient(120% 160% at 20% 0%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(135deg, rgba(201,165,106,.92), rgba(182,138,69,.92));
+      color: #fff;
+      box-shadow: 0 18px 55px rgba(201,165,106,.25);
+    }
+    .btn.primary:hover{
+      box-shadow: 0 22px 70px rgba(201,165,106,.32);
+      transform: translateY(-3px);
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.58);
+    }
+    .btn.icon{
+      padding: .78rem .78rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+    }
+
+    .btn .shine{
+      content:"";
+      position:absolute;
+      inset: -2px;
+      border-radius: 999px;
+      pointer-events:none;
+      background:
+        radial-gradient(400px 120px at 20% 30%, rgba(255,255,255,.35), transparent 45%),
+        radial-gradient(500px 180px at 80% 70%, rgba(255,255,255,.25), transparent 55%);
+      opacity: .65;
+      mix-blend-mode: soft-light;
+      filter: blur(.2px);
+    }
+
+    /* Header */
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      background: rgba(251,247,242,.72);
+      border-bottom: 1px solid rgba(26,23,20,.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .header-inner{
+      width: min(100% - 2rem, var(--container));
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: .8rem;
+      align-items: center;
+    }
+
+    .brand{
+      display: flex;
+      align-items: baseline;
+      gap: .85rem;
+      min-width: 0;
+    }
+    .brand .logo{
+      font-family: var(--serif);
+      font-weight: 600;
+      letter-spacing: .02em;
+      font-size: 1.05rem;
+      white-space: nowrap;
+    }
+    .brand .subline{
+      font-size: .85rem;
+      color: var(--muted-2);
+      border-left: 1px solid rgba(26,23,20,.14);
+      padding-left: .85rem;
+      white-space: nowrap;
+    }
+
+    .nav{
+      display: none;
+      gap: 1.15rem;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+    .nav a{
+      font-size: .92rem;
+      color: rgba(26,23,20,.76);
+      padding: .35rem .15rem;
+      position: relative;
+      transition: color .2s var(--ease);
+    }
+    .nav a:hover{ color: rgba(26,23,20,.95); }
+    .nav a::after{
+      content:"";
+      position:absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(201,165,106,.9), transparent);
+      opacity: 0;
+      transform: scaleX(.55);
+      transition: opacity .22s var(--ease), transform .22s var(--ease);
+    }
+    .nav a:hover::after{ opacity: 1; transform: scaleX(1); }
+
+    .header-actions{
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      justify-content: flex-end;
+    }
+
+    .hamburger{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--line-2);
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease);
+      box-shadow: 0 14px 35px rgba(18,12,6,.10);
+    }
+    .hamburger:hover{ transform: translateY(-2px); border-color: rgba(201,165,106,.35); }
+    .hamburger:active{ transform: translateY(0); }
+
+    @media (min-width: 980px){
+      .header-inner{ grid-template-columns: 1fr auto 1fr; }
+      .nav{ display: flex; }
+      .hamburger{ display: none; }
+    }
+
+    /* Off-canvas mobile drawer */
+    .drawer-backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(18,12,6,.42);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 80;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s var(--ease);
+    }
+    .drawer{
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(92vw, 380px);
+      height: 100%;
+      background: rgba(255,255,255,.84);
+      border-left: 1px solid rgba(26,23,20,.10);
+      box-shadow: -30px 0 80px rgba(18,12,6,.22);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 90;
+      transform: translateX(110%);
+      transition: transform .32s var(--ease-2);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    .drawer.open{ transform: translateX(0); }
+    .drawer-backdrop.open{ opacity: 1; pointer-events: auto; }
+
+    .drawer-head{
+      padding: 1rem 1rem .75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(26,23,20,.08);
+    }
+    .drawer-nav{
+      padding: .75rem 1rem 1rem;
+      display: grid;
+      gap: .35rem;
+    }
+    .drawer-nav a{
+      padding: .9rem .85rem;
+      border-radius: 14px;
+      border: 1px solid rgba(26,23,20,.08);
+      background: rgba(255,255,255,.55);
+      color: rgba(26,23,20,.86);
+      transition: transform .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease);
+    }
+    .drawer-nav a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(201,165,106,.35);
+      box-shadow: 0 14px 35px rgba(18,12,6,.10);
+    }
+    .drawer-foot{
+      padding: 1rem;
+      border-top: 1px solid rgba(26,23,20,.08);
+      display: grid;
+      gap: .6rem;
+    }
+    .drawer-foot .row{ display:flex; gap: .55rem; }
+    .drawer-foot .row .btn{ flex: 1; }
+
+    /* Hero */
+    .hero{
+      padding-top: calc(var(--header-h) + clamp(1.2rem, 1rem + 2vw, 2.2rem));
+      padding-bottom: clamp(2.8rem, 2.2rem + 3vw, 4.8rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset: -40% -20% auto -20%;
+      height: 420px;
+      background:
+        radial-gradient(closest-side, rgba(201,165,106,.18), transparent 68%),
+        radial-gradient(closest-side, rgba(242,231,220,.85), transparent 62%);
+      filter: blur(8px);
+      pointer-events:none;
+      transform: translateY(-10px);
+    }
+
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.5rem, 1.2rem + 2.5vw, 3rem);
+      align-items: center;
+    }
+
+    @media (min-width: 980px){
+      .hero-grid{
+        grid-template-columns: 1.05fr .95fr;
+        gap: 3.2rem;
+      }
+    }
+
+    .hero-copy{
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-cta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 1.35rem;
+      align-items: center;
+    }
+
+    .hint{
+      font-size: .92rem;
+      color: var(--muted-2);
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      margin-top: 1.1rem;
+    }
+    .hint .dot{
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(201,165,106,.9);
+      box-shadow: 0 0 0 6px rgba(201,165,106,.14);
+    }
+
+    .hero-visual{
+      position: relative;
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-card{
+      width: min(520px, 100%);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.52));
+      border: 1px solid rgba(26,23,20,.10);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      transform: translateZ(0);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background:
+        radial-gradient(1000px 240px at 20% 10%, rgba(255,255,255,.38), transparent 55%),
+        radial-gradient(800px 260px at 90% 80%, rgba(201,165,106,.22), transparent 60%);
+      pointer-events:none;
+      opacity: .9;
+      mix-blend-mode: soft-light;
+    }
+
+    .hero-img{
+      aspect-ratio: 4/5;
+      background:
+        radial-gradient(120% 80% at 30% 25%, rgba(201,165,106,.20), transparent 60%),
+        radial-gradient(120% 80% at 80% 70%, rgba(242,231,220,.92), transparent 62%),
+        linear-gradient(135deg, rgba(232,220,207,.92), rgba(255,248,239,.92));
+      position: relative;
+      overflow:hidden;
+    }
+
+    /* Optional: subtle moving gradient / sparkle */
+    .hero-img::before{
+      content:"";
+      position:absolute;
+      inset:-30%;
+      background: conic-gradient(from 180deg at 50% 50%,
+        rgba(255,255,255,.0),
+        rgba(255,255,255,.32),
+        rgba(201,165,106,.22),
+        rgba(255,255,255,.0),
+        rgba(255,255,255,.26),
+        rgba(201,165,106,.18),
+        rgba(255,255,255,.0)
+      );
+      animation: glowSpin 9.5s linear infinite;
+      opacity: .35;
+      filter: blur(12px);
+    }
+    @keyframes glowSpin{ to{ transform: rotate(360deg); } }
+
+    .polaroid{
+      position: absolute;
+      left: -14px;
+      top: 32px;
+      width: 180px;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(26,23,20,.10);
+      border-radius: 18px;
+      padding: .65rem;
+      box-shadow: 0 22px 60px rgba(18,12,6,.16);
+      transform: rotate(-6deg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .polaroid .thumb{
+      border-radius: 14px;
+      aspect-ratio: 4/3;
+      background:
+        radial-gradient(120% 100% at 30% 30%, rgba(201,165,106,.18), transparent 60%),
+        linear-gradient(135deg, rgba(242,231,220,.95), rgba(255,255,255,.75));
+      border: 1px solid rgba(26,23,20,.10);
+      overflow:hidden;
+      position:relative;
+    }
+    .polaroid .thumb::after{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background: radial-gradient(closest-side, rgba(255,255,255,.45), transparent 60%);
+      transform: translate(20px, -10px);
+      opacity: .65;
+    }
+    .polaroid .cap{
+      font-family: var(--serif);
+      font-size: .88rem;
+      margin-top: .55rem;
+      color: rgba(26,23,20,.8);
+    }
+
+    .floating-badges{
+      position: absolute;
+      right: -14px;
+      bottom: 26px;
+      display: grid;
+      gap: .6rem;
+      justify-items: end;
+    }
+
+    .floating-badges .badge{
+      transform: translateZ(0);
+      animation: floaty 4.2s var(--ease) infinite alternate;
+    }
+    .floating-badges .badge:nth-child(2){ animation-duration: 5.2s; animation-delay: .15s; }
+    @keyframes floaty{
+      from{ transform: translateY(0); }
+      to{ transform: translateY(-10px); }
+    }
+
+    /* Hero entry animations */
+    .load-anim{
+      opacity: 0;
+      transform: translateY(10px);
+      will-change: transform, opacity;
+    }
+    .is-loaded .load-anim{
+      animation: heroIn .8s var(--ease-2) forwards;
+    }
+    .is-loaded .load-anim.delay-1{ animation-delay: .10s; }
+    .is-loaded .load-anim.delay-2{ animation-delay: .18s; }
+    .is-loaded .load-anim.delay-3{ animation-delay: .26s; }
+    .is-loaded .hero-visual.load-anim{ animation-duration: .95s; animation-delay: .14s; }
+    @keyframes heroIn{
+      to{ opacity: 1; transform: translateY(0); }
+    }
+
+    .text-reveal{
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .text-reveal > span{
+      display: inline-block;
+      transform: translateY(115%);
+      will-change: transform;
+    }
+    .is-loaded .text-reveal > span{
+      animation: revealUp .85s var(--ease-2) .12s forwards;
+    }
+    @keyframes revealUp{ to{ transform: translateY(0); } }
+
+    /* Trust strip */
+    .trust{
+      padding: 1.2rem 0 0;
+    }
+    .trust-strip{
+      margin-top: 1.2rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(26,23,20,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.52));
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow: hidden;
+      position: relative;
+    }
+    .trust-strip::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background:
+        radial-gradient(900px 220px at 10% 20%, rgba(201,165,106,.18), transparent 60%),
+        radial-gradient(900px 240px at 90% 80%, rgba(242,231,220,.9), transparent 55%);
+      opacity: .85;
+      pointer-events:none;
+      mix-blend-mode: soft-light;
+    }
+    .trust-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .8rem;
+      padding: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    @media (min-width: 780px){
+      .trust-grid{
+        grid-template-columns: repeat(4, 1fr);
+        padding: 1.15rem 1.25rem;
+        gap: 1rem;
+      }
+    }
+    .trust-item{
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: .85rem .85rem;
+      border-radius: 18px;
+      border: 1px solid rgba(26,23,20,.08);
+      background: rgba(255,255,255,.55);
+      transition: transform .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease);
+    }
+    .trust-item:hover{
+      transform: translateY(-2px);
+      border-color: rgba(201,165,106,.28);
+      box-shadow: 0 14px 40px rgba(18,12,6,.10);
+    }
+    .trust-item .t{
+      display: grid;
+      gap: .18rem;
+      min-width: 0;
+    }
+    .trust-item strong{
+      font-weight: 600;
+      font-size: .98rem;
+    }
+    .trust-item span{
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .icon{
+      width: 22px;
+      height: 22px;
+      display: inline-block;
+      flex: 0 0 auto;
+    }
+    .icon svg{ width: 100%; height: 100%; }
+
+    /* Section divider (wave) */
+    .divider{
+      position: relative;
+      height: 54px;
+      margin-top: clamp(1.8rem, 1.2rem + 1.8vw, 2.6rem);
+      overflow: hidden;
+    }
+    .divider svg{
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: min(1200px, 130%);
+      height: 100%;
+      opacity: .9;
+      filter: drop-shadow(0 14px 30px rgba(18,12,6,.08));
+    }
+
+    /* Services */
+    .grid{
+      display:grid;
+      gap: 1rem;
+    }
+    .services-grid{
+      grid-template-columns: 1fr;
+      margin-top: 1.4rem;
+    }
+    @media (min-width: 720px){
+      .services-grid{ grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+    }
+    @media (min-width: 1040px){
+      .services-grid{ grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(26,23,20,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.50));
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow: hidden;
+      position: relative;
+      transform: translateZ(0);
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background:
+        radial-gradient(900px 240px at 20% 10%, rgba(201,165,106,.16), transparent 60%),
+        radial-gradient(900px 240px at 90% 100%, rgba(242,231,220,.8), transparent 55%);
+      opacity: .65;
+      pointer-events:none;
+      mix-blend-mode: soft-light;
+    }
+
+    .service{
+      padding: 1.15rem 1.1rem 1.05rem;
+      display: grid;
+      gap: .75rem;
+      transition: transform .24s var(--ease), box-shadow .24s var(--ease), border-color .24s var(--ease);
+      will-change: transform;
+    }
+    .service:hover{
+      transform: translateY(-5px);
+      box-shadow: 0 18px 55px rgba(18,12,6,.14);
+      border-color: rgba(201,165,106,.28);
+    }
+    .service-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: .75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .tag{
+      font-size: .78rem;
+      font-weight: 600;
+      padding: .35rem .55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(201,165,106,.35);
+      background: rgba(201,165,106,.14);
+      color: rgba(26,23,20,.85);
+      white-space: nowrap;
+    }
+    .service h3{
+      margin: 0;
+      font-size: 1.12rem;
+      font-weight: 650;
+      letter-spacing: .01em;
+    }
+    .service p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: .98rem;
+      position: relative;
+      z-index: 1;
+    }
+    .price{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: .75rem;
+      position: relative;
+      z-index: 1;
+      margin-top: .1rem;
+    }
+    .price strong{
+      font-family: var(--serif);
+      font-weight: 600;
+      letter-spacing: -.01em;
+      color: rgba(26,23,20,.92);
+    }
+    .price .btn{
+      padding: .72rem .9rem;
+      font-weight: 650;
+      box-shadow: 0 12px 28px rgba(18,12,6,.10);
+    }
+
+    /* Signature looks */
+    .signature{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      margin-top: 1.2rem;
+    }
+    @media (min-width: 980px){
+      .signature{ grid-template-columns: 1.02fr .98fr; gap: 2.6rem; }
+    }
+
+    .editorial{
+      position: relative;
+      padding: 1.3rem 1.1rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(26,23,20,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.48));
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+    .editorial::after{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background: radial-gradient(closest-side, rgba(201,165,106,.20), transparent 60%);
+      transform: translate(40%, 10%);
+      opacity: .55;
+      pointer-events:none;
+      filter: blur(2px);
+    }
+
+    .looks{
+      position: relative;
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+    }
+    .stack{
+      position: relative;
+      width: min(560px, 100%);
+      height: 420px;
+    }
+    .shot{
+      position:absolute;
+      border-radius: 22px;
+      border: 1px solid rgba(26,23,20,.10);
+      box-shadow: 0 22px 60px rgba(18,12,6,.16);
+      overflow:hidden;
+      background:
+        radial-gradient(120% 100% at 35% 20%, rgba(201,165,106,.20), transparent 60%),
+        linear-gradient(135deg, rgba(242,231,220,.95), rgba(255,255,255,.72));
+      transform: translateZ(0);
+      will-change: transform;
+    }
+    .shot.one{
+      width: 62%;
+      height: 68%;
+      left: 2%;
+      top: 10%;
+      transform: rotate(-6deg);
+    }
+    .shot.two{
+      width: 60%;
+      height: 72%;
+      right: 2%;
+      top: 6%;
+      transform: rotate(4deg);
+    }
+    .shot.three{
+      width: 70%;
+      height: 58%;
+      left: 16%;
+      bottom: 2%;
+      transform: rotate(-2deg);
+      box-shadow: 0 26px 70px rgba(18,12,6,.18);
+    }
+    .shot .ph{
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(120% 100% at 30% 20%, rgba(255,255,255,.35), transparent 55%),
+        radial-gradient(110% 90% at 80% 70%, rgba(201,165,106,.18), transparent 60%),
+        linear-gradient(135deg, rgba(232,220,207,.95), rgba(255,248,239,.9));
+      position: relative;
+    }
+    .shot .ph::after{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(135deg, rgba(26,23,20,.06) 0px, rgba(26,23,20,.06) 1px, transparent 1px, transparent 10px);
+      opacity: .12;
+      mix-blend-mode: multiply;
+      pointer-events:none;
+    }
+
+    /* Gallery */
+    .gallery-wrap{
+      margin-top: 1.25rem;
+    }
+    .masonry{
+      columns: 2;
+      column-gap: 1rem;
+    }
+    @media (min-width: 780px){
+      .masonry{ columns: 3; }
+    }
+    @media (min-width: 1100px){
+      .masonry{ columns: 4; }
+    }
+    .tile{
+      break-inside: avoid;
+      margin: 0 0 1rem;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(26,23,20,.10);
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 16px 46px rgba(18,12,6,.12);
+      cursor: pointer;
+      transition: transform .24s var(--ease), box-shadow .24s var(--ease), border-color .24s var(--ease);
+      position: relative;
+    }
+    .tile:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 22px 65px rgba(18,12,6,.16);
+      border-color: rgba(201,165,106,.30);
+    }
+    .tile .img{
+      width: 100%;
+      aspect-ratio: 4/5;
+      background:
+        radial-gradient(120% 100% at 30% 20%, rgba(201,165,106,.18), transparent 60%),
+        radial-gradient(110% 90% at 80% 70%, rgba(255,255,255,.30), transparent 60%),
+        linear-gradient(135deg, rgba(242,231,220,.95), rgba(255,255,255,.72));
+      position: relative;
+    }
+    .tile:nth-child(3n) .img{ aspect-ratio: 4/6; }
+    .tile:nth-child(4n) .img{ aspect-ratio: 1/1; }
+    .tile .img::after{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background:
+        radial-gradient(600px 240px at 20% 10%, rgba(255,255,255,.30), transparent 60%),
+        radial-gradient(500px 260px at 90% 100%, rgba(201,165,106,.20), transparent 60%);
+      mix-blend-mode: soft-light;
+      opacity: .9;
+      pointer-events:none;
+    }
+    .tile .cap{
+      padding: .75rem .85rem;
+      font-size: .92rem;
+      color: rgba(26,23,20,.72);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: .8rem;
+    }
+    .tile .cap .mini{
+      font-size: .8rem;
+      color: rgba(26,23,20,.55);
+      white-space: nowrap;
+    }
+
+    /* Lightbox */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      background: rgba(18,12,6,.62);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: grid;
+      place-items: center;
+      z-index: 120;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s var(--ease);
+    }
+    .lightbox.open{
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox-inner{
+      width: min(92vw, 980px);
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 30px 100px rgba(0,0,0,.35);
+      position: relative;
+    }
+    .lightbox-img{
+      width: 100%;
+      aspect-ratio: 16/10;
+      background:
+        radial-gradient(120% 100% at 30% 20%, rgba(201,165,106,.28), transparent 60%),
+        linear-gradient(135deg, rgba(242,231,220,.35), rgba(255,255,255,.10));
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+    .lightbox-img img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+      opacity: .98;
+    }
+    .lightbox-bar{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: .6rem;
+      padding: .75rem .8rem;
+      background: rgba(255,255,255,.08);
+      border-top: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.88);
+      font-size: .95rem;
+    }
+    .lightbox-actions{
+      display:flex;
+      gap: .5rem;
+      align-items:center;
+    }
+    .lb-btn{
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.92);
+      cursor:pointer;
+      transition: transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+    }
+    .lb-btn:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.16);
+      border-color: rgba(201,165,106,.35);
+    }
+    .lb-btn:active{ transform: translateY(0); }
+
+    /* Pricing */
+    .pricing{
+      margin-top: 1.4rem;
+      display:grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px){
+      .pricing{ grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    }
+    .plan{
+      padding: 1.25rem 1.15rem 1.15rem;
+      display:grid;
+      gap: .85rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .24s var(--ease), box-shadow .24s var(--ease), border-color .24s var(--ease);
+    }
+    .plan:hover{
+      transform: translateY(-5px);
+      box-shadow: 0 22px 70px rgba(18,12,6,.16);
+      border-color: rgba(201,165,106,.30);
+    }
+    .plan .top{
+      display:flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: .75rem;
+      z-index: 1;
+      position: relative;
+    }
+    .plan h3{
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 650;
+    }
+    .plan .money{
+      font-family: var(--serif);
+      font-weight: 650;
+      font-size: 1.6rem;
+      letter-spacing: -.01em;
+      margin-top: .2rem;
+    }
+    .plan ul{
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      z-index: 1;
+      position: relative;
+    }
+    .plan .note{
+      font-size: .9rem;
+      color: rgba(26,23,20,.58);
+      z-index: 1;
+      position: relative;
+    }
+    .plan .btn{
+      width: 100%;
+      justify-content: center;
+      z-index: 1;
+      position: relative;
+    }
+    .plan.featured{
+      border-color: rgba(201,165,106,.38);
+      box-shadow: 0 24px 80px rgba(201,165,106,.18);
+    }
+    .plan.featured::after{
+      content:"";
+      position:absolute;
+      inset:-10%;
+      background:
+        radial-gradient(closest-side, rgba(201,165,106,.22), transparent 60%),
+        radial-gradient(closest-side, rgba(255,255,255,.20), transparent 60%);
+      transform: translate(35%, -10%);
+      opacity: .8;
+      filter: blur(2px);
+      pointer-events:none;
+    }
+
+    /* Testimonials */
+    .testimonials{
+      margin-top: 1.3rem;
+      display:grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 840px){
+      .testimonials{ grid-template-columns: repeat(3, 1fr); gap: 1.15rem; }
+    }
+    .tcard{
+      padding: 1.15rem 1.05rem 1.05rem;
+      display:grid;
+      gap: .75rem;
+      transition: transform .24s var(--ease), box-shadow .24s var(--ease), border-color .24s var(--ease);
+    }
+    .tcard:hover{
+      transform: translateY(-4px);
+      border-color: rgba(201,165,106,.28);
+      box-shadow: 0 20px 60px rgba(18,12,6,.14);
+    }
+    .stars{
+      display:flex;
+      align-items:center;
+      gap: .25rem;
+    }
+    .stars svg{ width: 18px; height: 18px; }
+    .tcard p{
+      margin: 0;
+      color: rgba(26,23,20,.78);
+      line-height: 1.65;
+    }
+    .tmeta{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: .8rem;
+      color: rgba(26,23,20,.62);
+      font-size: .92rem;
+    }
+
+    /* About */
+    .about{
+      margin-top: 1.25rem;
+      display:grid;
+      gap: 1.2rem;
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    @media (min-width: 980px){
+      .about{ grid-template-columns: 1.05fr .95fr; gap: 2rem; }
+    }
+
+    .founder{
+      padding: 1.15rem;
+      display:grid;
+      gap: .9rem;
+    }
+    .portrait{
+      border-radius: 22px;
+      border: 1px solid rgba(26,23,20,.10);
+      overflow:hidden;
+      background:
+        radial-gradient(120% 100% at 30% 20%, rgba(201,165,106,.18), transparent 60%),
+        linear-gradient(135deg, rgba(242,231,220,.95), rgba(255,255,255,.75));
+      aspect-ratio: 4/3;
+      position: relative;
+      box-shadow: 0 18px 55px rgba(18,12,6,.12);
+    }
+    .portrait::after{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(135deg, rgba(26,23,20,.06) 0px, rgba(26,23,20,.06) 1px, transparent 1px, transparent 12px);
+      opacity: .10;
+      pointer-events:none;
+    }
+
+    /* Contact */
+    .contact-grid{
+      margin-top: 1.25rem;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    @media (min-width: 980px){
+      .contact-grid{ grid-template-columns: 1.02fr .98fr; gap: 1.2rem; }
+    }
+
+    .cta-card{
+      padding: 1.25rem 1.15rem;
+      overflow:hidden;
+    }
+    .cta-card::after{
+      content:"";
+      position:absolute;
+      inset:-30%;
+      background:
+        radial-gradient(closest-side, rgba(201,165,106,.22), transparent 60%),
+        radial-gradient(closest-side, rgba(255,255,255,.22), transparent 65%);
+      transform: translate(45%, -8%);
+      opacity: .85;
+      filter: blur(1px);
+      pointer-events:none;
+    }
+
+    .contact-actions{
+      display:flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-top: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-actions .btn{ padding: .88rem 1.02rem; }
+
+    .info{
+      padding: 1.15rem;
+      display:grid;
+      gap: .95rem;
+    }
+    .info-row{
+      display:flex;
+      gap: .85rem;
+      align-items:flex-start;
+      color: rgba(26,23,20,.78);
+      line-height: 1.55;
+      font-size: .98rem;
+    }
+    .info-row .icon{ margin-top: .2rem; opacity: .9; }
+    .hours{
+      margin: .15rem 0 0;
+      padding-left: 1.2rem;
+      color: rgba(26,23,20,.65);
+      line-height: 1.6;
+    }
+
+    .map-card{
+      padding: .85rem;
+      overflow:hidden;
+    }
+    .map{
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(26,23,20,.10);
+      aspect-ratio: 16/10;
+      box-shadow: 0 16px 46px rgba(18,12,6,.12);
+      background: rgba(255,255,255,.35);
+      position: relative;
+      z-index: 1;
+    }
+    .map iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    /* Footer */
+    footer{
+      padding: 2.3rem 0 2.2rem;
+      border-top: 1px solid rgba(26,23,20,.10);
+      background: rgba(255,255,255,.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+    @media (min-width: 880px){
+      .footer-grid{
+        grid-template-columns: 1.1fr .9fr;
+        gap: 2rem;
+      }
+    }
+    .footer-links{
+      display:flex;
+      flex-wrap: wrap;
+      gap: .8rem 1.2rem;
+      justify-content: flex-start;
+    }
+    .footer-links a{
+      font-size: .95rem;
+      color: rgba(26,23,20,.70);
+      border-bottom: 1px solid transparent;
+      padding-bottom: .15rem;
+      transition: color .2s var(--ease), border-color .2s var(--ease);
+    }
+    .footer-links a:hover{
+      color: rgba(26,23,20,.92);
+      border-color: rgba(201,165,106,.55);
+    }
+    .legal{
+      margin-top: .75rem;
+      color: rgba(26,23,20,.56);
+      font-size: .92rem;
+    }
+    .social{
+      display:flex;
+      gap: .55rem;
+      align-items:center;
+      margin-top: .85rem;
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .7s var(--ease-2), transform .7s var(--ease-2);
+      will-change: transform, opacity;
+    }
+    .reveal.in{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Toast */
+    .toasts{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 130;
+      display:grid;
+      gap: .65rem;
+      pointer-events: none;
+    }
+    .toast{
+      width: min(92vw, 360px);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(26,23,20,.78);
+      color: rgba(255,255,255,.92);
+      padding: .85rem .9rem;
+      box-shadow: 0 18px 65px rgba(0,0,0,.28);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      pointer-events: auto;
+      display:flex;
+      gap: .75rem;
+      align-items:flex-start;
+      transform: translateY(10px);
+      opacity: 0;
+      animation: toastIn .28s var(--ease-2) forwards;
+    }
+    .toast .small{
+      color: rgba(255,255,255,.72);
+      font-size: .9rem;
+      line-height: 1.45;
+    }
+    .toast .x{
+      margin-left: auto;
+      width: 34px; height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.9);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      transition: transform .18s var(--ease), background .18s var(--ease);
+    }
+    .toast .x:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); }
+    @keyframes toastIn{
+      to{ transform: translateY(0); opacity: 1; }
+    }
+    @keyframes toastOut{
+      to{ transform: translateY(10px); opacity: 0; }
+    }
+
+    /* Helper */
+    .split{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .fine{
+      font-size: .95rem;
+      color: rgba(26,23,20,.62);
+      line-height: 1.6;
+      max-width: 68ch;
+    }
+
+    /* Subtle top offset for anchored sections */
+    section[id]{ scroll-margin-top: calc(var(--header-h) + 18px); }
+  </style>
+</head>
+
+<body>
+  <!-- SVG icon sprites (inline, no external icon libraries) -->
+  <svg width="0" height="0" style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true" focusable="false">
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2.7l2.85 6.05 6.65.58-5.05 4.38 1.52 6.47L12 17.93 6.03 20.2l1.52-6.47-5.05-4.38 6.65-.58L12 2.7z"/>
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2l8 4v6c0 5.25-3.44 9.93-8 10-4.56-.07-8-4.75-8-10V6l8-4zm0 4.2L7 8.3v3.56c0 3.76 2.3 7.22 5 7.64 2.7-.42 5-3.88 5-7.64V8.3l-5-2.1z"/>
+    </symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2l1.2 6.3L20 10l-6.8 1.7L12 18l-1.2-6.3L4 10l6.8-1.7L12 2z"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2zm13 8H6v10h14V10zM6 8h14V6H6v2z"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6.6 10.8c1.8 3.3 3.3 4.8 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1 .4 2.2.7 3.4.8.5.1.8.5.8 1v3.5c0 .6-.5 1-1.1 1C10.9 22.3 1.7 13.1 2.7 3.3c.1-.6.5-1.1 1.1-1.1h3.5c.5 0 .9.3 1 .8.1 1.2.4 2.4.8 3.4.2.4.1.9-.2 1.2l-2.3 2.2z"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2c3.9 0 7 3.1 7 7 0 5.3-7 13-7 13S5 14.3 5 9c0-3.9 3.1-7 7-7zm0 9.5c1.4 0 2.5-1.1 2.5-2.5S13.4 6.5 12 6.5 9.5 7.6 9.5 9 10.6 11.5 12 11.5z"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M4 7h16v2H4V7zm0 8h16v2H4v-2zm0-4h16v2H4v-2z"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M18.3 5.7L12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3 1.4 1.4z"/>
+    </symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM17.6 6.9a.8.8 0 1 1-.8-.8.8.8 0 0 1 .8.8z"/>
+    </symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.7 14.2c-.2.6-1.1 1.1-1.5 1.2-.4.1-.9.2-1.5 0-1-.3-2.3-1-3.5-2.2s-2.1-2.8-2.4-3.8c-.2-.6-.1-1.1 0-1.5.1-.4.6-1.2 1.2-1.5.3-.2.7-.2 1 0 .2.2.4.6.6 1 .2.4.3.7.2 1-.1.3-.3.6-.5.8-.2.2-.3.4-.2.6.2.5.8 1.4 1.6 2.2.8.8 1.7 1.3 2.2 1.6.2.1.4 0 .6-.2.2-.2.5-.4.8-.5.3-.1.6 0 1 .2.4.2.8.4 1 .6.2.3.2.7 0 1z"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M13 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2h12.2l-4.6-4.6L13 5z"/>
+    </symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M9 18l6-6-6-6-1.4 1.4L12.2 12l-4.6 4.6L9 18z"/>
+    </symbol>
+  </svg>
+
+  <!-- Sticky Header -->
+  <header class="header" role="banner">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Zur Startseite">
+        <!-- LOGO PLACEHOLDER: replace text logo with your real logo image -->
+        <div class="logo">VELVET NAIL ATELIER</div>
+        <div class="subline">Wien • 1010</div>
+      </a>
+
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#preise">Preise</a>
+        <a href="#bewertungen">Bewertungen</a>
+        <a href="#ueberuns">Über uns</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#" class="btn primary demo-action" data-demo="Demo: Hier würde die Terminbuchung öffnen." aria-label="Jetzt buchen">
+          Jetzt buchen <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+          <span class="shine" aria-hidden="true"></span>
+        </a>
+        <a href="#" class="btn icon demo-action" data-demo="Demo: Hier würde WhatsApp öffnen." aria-label="WhatsApp">
+          <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg>
+        </a>
+        <a href="#" class="btn icon demo-action" data-demo="Demo: Hier würde Instagram öffnen." aria-label="Instagram">
+          <svg class="icon" aria-hidden="true"><use href="#i-ig"></use></svg>
+        </a>
+
+        <button class="hamburger" id="openDrawer" aria-label="Menü öffnen" aria-controls="drawer" aria-expanded="false">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="drawer-head">
+      <div>
+        <div class="logo" style="font-family:var(--serif);font-weight:600;letter-spacing:.02em;">VELVET NAIL ATELIER</div>
+        <div class="muted2" style="font-size:.9rem;margin-top:.15rem;">Wien • 1010</div>
+      </div>
+      <button class="hamburger" id="closeDrawer" aria-label="Menü schließen">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+    <nav class="drawer-nav" aria-label="Mobile Hauptnavigation">
+      <a href="#leistungen" class="drawer-link">Leistungen</a>
+      <a href="#galerie" class="drawer-link">Galerie</a>
+      <a href="#preise" class="drawer-link">Preise</a>
+      <a href="#bewertungen" class="drawer-link">Bewertungen</a>
+      <a href="#ueberuns" class="drawer-link">Über uns</a>
+      <a href="#kontakt" class="drawer-link">Kontakt</a>
+    </nav>
+    <div class="drawer-foot">
+      <a href="#" class="btn primary demo-action" data-demo="Demo: Hier würde die Terminbuchung öffnen.">
+        Jetzt buchen <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+        <span class="shine" aria-hidden="true"></span>
+      </a>
+      <div class="row">
+        <a href="#" class="btn demo-action" data-demo="Demo: Hier würde WhatsApp öffnen.">
+          <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg> WhatsApp
+        </a>
+        <a href="#" class="btn demo-action" data-demo="Demo: Hier würde Instagram öffnen.">
+          <svg class="icon" aria-hidden="true"><use href="#i-ig"></use></svg> Instagram
+        </a>
+      </div>
+      <div class="fine">Hinweis: Demo-Website. Alle Buttons sind klickbar und zeigen eine Vorschau-Aktion.</div>
+    </div>
+  </aside>
+
+  <!-- Hero -->
+  <main id="top">
+    <section class="hero" aria-label="Hero">
+      <div class="container hero-grid">
+        <div class="hero-copy load-anim">
+          <div class="kicker load-anim delay-1">Premium Nagelstudio • 1. Bezirk Wien</div>
+
+          <h1 class="h1">
+            <span class="text-reveal"><span>Deine Nägel.</span></span><br />
+            <span class="text-reveal"><span>Deine Signatur.</span></span>
+          </h1>
+
+          <p class="sub load-anim delay-2">
+            Premium Nagelstudio im 1. Bezirk Wien – präzise, hygienisch, stilvoll.
+            Für Hände, die leise Luxus sagen.
+          </p>
+
+          <div class="hero-cta load-anim delay-3">
+            <a href="#" class="btn primary demo-action" data-demo="Demo: Hier würde die Termin-Anfrage öffnen. Beliebte Slots sind schnell weg.">
+              Jetzt Termin anfragen <svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>
+              <span class="shine" aria-hidden="true"></span>
+            </a>
+            <a href="#leistungen" class="btn ghost">
+              Leistungen ansehen <svg class="icon" aria-hidden="true"><use href="#i-chev"></use></svg>
+            </a>
+          </div>
+
+          <div class="hint load-anim delay-3">
+            <span class="dot" aria-hidden="true"></span>
+            Nur begrenzte Termine pro Woche – für echte Präzision.
+          </div>
+
+          <div class="divider" aria-hidden="true">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                  <stop offset="0" stop-color="rgba(201,165,106,.0)"/>
+                  <stop offset="0.25" stop-color="rgba(201,165,106,.42)"/>
+                  <stop offset="0.55" stop-color="rgba(255,255,255,.35)"/>
+                  <stop offset="0.8" stop-color="rgba(201,165,106,.32)"/>
+                  <stop offset="1" stop-color="rgba(201,165,106,.0)"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,64 C240,120 360,0 600,64 C840,128 960,12 1200,64 L1200,120 L0,120 Z" fill="url(#g1)"></path>
+            </svg>
+          </div>
+        </div>
+
+        <div class="hero-visual load-anim" aria-label="Hero Visual">
+          <div class="hero-card parallax" data-parallax="0.18">
+            <!-- IMAGE PLACEHOLDER: HERO MAIN IMAGE (replace with real studio / nails image) -->
+            <div class="hero-img" role="img" aria-label="Platzhalterbild für Nägel und Studioästhetik"></div>
+
+            <!-- Polaroid overlay -->
+            <div class="polaroid parallax" data-parallax="0.28" aria-label="Polaroid Highlight">
+              <!-- IMAGE PLACEHOLDER: POLAROID THUMB (replace with close-up nail photo) -->
+              <div class="thumb" role="img" aria-label="Platzhalter für Polaroid Foto"></div>
+              <div class="cap">Signature Finish • ultra clean</div>
+            </div>
+
+            <!-- Floating badges -->
+            <div class="floating-badges" aria-hidden="false">
+              <div class="badge parallax" data-parallax="0.22">
+                <svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg>
+                ★ 4,9 Bewertung
+              </div>
+              <div class="badge parallax" data-parallax="0.18">
+                <svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg>
+                NEU: Rubber Base
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Strip -->
+      <div class="container trust">
+        <div class="trust-strip reveal" data-reveal>
+          <div class="trust-grid">
+            <div class="trust-item reveal" data-reveal data-stagger>
+              <span class="icon" aria-hidden="true"><svg><use href="#i-shield"></use></svg></span>
+              <div class="t">
+                <strong>Hygiene auf Klinikniveau</strong>
+                <span>Sauber. Sicher. Ohne Kompromisse.</span>
+              </div>
+            </div>
+            <div class="trust-item reveal" data-reveal data-stagger>
+              <span class="icon" aria-hidden="true"><svg><use href="#i-spark"></use></svg></span>
+              <div class="t">
+                <strong>Präzise Russian Manicure</strong>
+                <span>Feinste Details. Perfekte Konturen.</span>
+              </div>
+            </div>
+            <div class="trust-item reveal" data-reveal data-stagger>
+              <span class="icon" aria-hidden="true"><svg><use href="#i-star"></use></svg></span>
+              <div class="t">
+                <strong>Premium Produkte</strong>
+                <span>Langlebig. Hochglanz. Nude-to-gold.</span>
+              </div>
+            </div>
+            <div class="trust-item reveal" data-reveal data-stagger>
+              <span class="icon" aria-hidden="true"><svg><use href="#i-calendar"></use></svg></span>
+              <div class="t">
+                <strong>Termine ohne DM-Chaos</strong>
+                <span>Ein Klick. Klare Slots. Stressfrei.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leistungen -->
+    <section class="section" id="leistungen" aria-label="Leistungen">
+      <div class="container">
+        <div class="split">
+          <div>
+            <div class="kicker reveal" data-reveal>Leistungen</div>
+            <h2 class="h2 reveal" data-reveal>Minimaler Look. Maximale Wirkung.</h2>
+            <p class="sub reveal" data-reveal>
+              Jede Behandlung ist ein Ritual: präzise Vorbereitung, saubere Linien, langlebige Ergebnisse.
+              Beliebte Slots sind oft schnell weg – besonders vor Events & Urlaubszeiten.
+            </p>
+          </div>
+          <div class="pill reveal" data-reveal>
+            <svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg>
+            High-end Finish • Clean Girl Aesthetic
+          </div>
+        </div>
+
+        <div class="grid services-grid">
+          <article class="card service reveal" data-reveal data-stagger>
+            <div class="service-top">
+              <h3>Russian Manicure</h3>
+              <span class="tag">Beliebt</span>
+            </div>
+            <p>Ultra-präzise Nagelhautpflege für die perfekte Basis – clean, elegant, makellos.</p>
+            <div class="price">
+              <strong>ab 55–75 €</strong>
+              <a href="#" class="btn demo-action" data-demo="Demo: Details zu Russian Manicure würden hier öffnen.">Details</a>
+            </div>
+          </article>
+
+          <article class="card service reveal" data-reveal data-stagger>
+            <div class="service-top">
+              <h3>Gel Modellage</h3>
+              <span class="tag">Premium</span>
+            </div>
+            <p>Stabil, dünn gearbeitet, hochglänzend – für Alltag und besondere Anlässe.</p>
+            <div class="price">
+              <strong>ab 79–129 €</strong>
+              <a href="#" class="btn demo-action" data-demo="Demo: Details zu Gel Modellage würden hier öffnen.">Details</a>
+            </div>
+          </article>
+
+          <article class="card service reveal" data-reveal data-stagger>
+            <div class="service-top">
+              <h3>Acryl / Hard Gel</h3>
+              <span class="tag">Studio-Favorit</span>
+            </div>
+            <p>Extra Halt für anspruchsvolle Nägel – robust, sauber modelliert, langlebig.</p>
+            <div class="price">
+              <strong>ab 89–149 €</strong>
+              <a href="#" class="btn demo-action" data-demo="Demo: Details zu Acryl/Hard Gel würden hier öffnen.">Details</a>
+            </div>
+          </article>
+
+          <article class="card service reveal" data-reveal data-stagger>
+            <div class="service-top">
+              <h3>Nail Art</h3>
+              <span class="tag">Neu</span>
+            </div>
+            <p>French, Chrome, Babyboomer oder minimalistische Akzente – editorial, aber tragbar.</p>
+            <div class="price">
+              <strong>ab 10–45 €</strong>
+              <a href="#" class="btn demo-action" data-demo="Demo: Nail Art Varianten würden hier gezeigt.">Details</a>
+            </div>
+          </article>
+
+          <article class="card service reveal" data-reveal data-stagger>
+            <div class="service-top">
+              <h3>Refill / Auffüllen</h3>
+              <span class="tag">Beliebt</span>
+            </div>
+            <p>Form & Glanz neu perfektioniert – für ein Finish wie frisch gemacht.</p>
+            <div class="price">
+              <strong>ab 69–99 €</strong>
+              <a href="#" class="btn demo-action" data-demo="Demo: Refill-Details würden hier öffnen.">Details</a>
+            </div>
+          </article>
+
+          <article class="card service reveal" data-reveal data-stagger>
+            <div class="service-top">
+              <h3>Reparatur (1 Nagel)</h3>
+              <span class="tag">Quick Fix</span>
+            </div>
+            <p>Ein Nagel bricht – wir retten den Look, ohne dass es jemand merkt.</p>
+            <div class="price">
+              <strong>ab 8–15 €</strong>
+              <a href="#" class="btn demo-action" data-demo="Demo: Reparatur-Details würden hier öffnen.">Details</a>
+            </div>
+          </article>
+
+          <article class="card service reveal" data-reveal data-stagger>
+            <div class="service-top">
+              <h3>SPA Handpflege / Paraffin</h3>
+              <span class="tag">Luxury</span>
+            </div>
+            <p>Weiche Hände, seidiger Glow – das Extra, das man sofort sieht (und fühlt).</p>
+            <div class="price">
+              <strong>ab 25–39 €</strong>
+              <a href="#" class="btn demo-action" data-demo="Demo: SPA-Handpflege Details würden hier öffnen.">Details</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature Looks -->
+    <section class="section" aria-label="Signature Looks">
+      <div class="container signature">
+        <div class="editorial reveal" data-reveal>
+          <div class="kicker">Unsere Signature Looks</div>
+          <h2 class="h2">Editorial, aber alltagstauglich.</h2>
+          <p class="sub">
+            Wir lieben Nude, Cream & Soft Gold – und veredeln jeden Look mit ruhiger Präzision.
+            Kein „zu viel“. Nur „genau richtig“.
+          </p>
+          <div style="margin-top:1.1rem; display:grid; gap:.65rem; position:relative; z-index:1;">
+            <div class="pill">
+              <svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg>
+              Clean French • Micro-Details • High-Gloss
+            </div>
+            <div class="fine">
+              Tipp: Wenn du ein fixes Datum hast, frag lieber früh an – die besten Zeiten sind oft zuerst vergeben.
+            </div>
+          </div>
+        </div>
+
+        <div class="looks reveal" data-reveal>
+          <div class="stack" aria-label="Überlappende Bilder">
+            <!-- IMAGE PLACEHOLDER: SIGNATURE LOOKS IMAGE 1 -->
+            <div class="shot one parallax" data-parallax="0.25" role="img" aria-label="Platzhalterbild 1">
+              <div class="ph"></div>
+            </div>
+            <!-- IMAGE PLACEHOLDER: SIGNATURE LOOKS IMAGE 2 -->
+            <div class="shot two parallax" data-parallax="0.18" role="img" aria-label="Platzhalterbild 2">
+              <div class="ph"></div>
+            </div>
+            <!-- IMAGE PLACEHOLDER: SIGNATURE LOOKS IMAGE 3 -->
+            <div class="shot three parallax" data-parallax="0.32" role="img" aria-label="Platzhalterbild 3">
+              <div class="ph"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galerie -->
+    <section class="section" id="galerie" aria-label="Galerie">
+      <div class="container">
+        <div class="split">
+          <div>
+            <div class="kicker reveal" data-reveal>Galerie</div>
+            <h2 class="h2 reveal" data-reveal>Looks, die man speichern will.</h2>
+            <p class="sub reveal" data-reveal>
+              Eine kleine Auswahl – clean, luxuriös, präzise. Klick auf ein Bild für die Lightbox (Demo).
+            </p>
+          </div>
+          <a href="#" class="btn demo-action reveal" data-reveal data-demo="Demo: Hier würde das volle Portfolio / Instagram Grid öffnen.">
+            Mehr sehen <svg class="icon" aria-hidden="true"><use href="#i-ig"></use></svg>
+          </a>
+        </div>
+
+        <div class="gallery-wrap reveal" data-reveal>
+          <div class="masonry" id="gallery">
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 1 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-01/1600/1000"
+                 data-alt="Platzhalter Foto 1">
+              <div class="img" aria-label="Platzhalter Foto 1"></div>
+              <div class="cap"><span>Nude French</span><span class="mini">Lightbox</span></div>
+            </div>
+
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 2 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-02/1600/1000"
+                 data-alt="Platzhalter Foto 2">
+              <div class="img" aria-label="Platzhalter Foto 2"></div>
+              <div class="cap"><span>Chrome Accent</span><span class="mini">Lightbox</span></div>
+            </div>
+
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 3 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-03/1600/1000"
+                 data-alt="Platzhalter Foto 3">
+              <div class="img" aria-label="Platzhalter Foto 3"></div>
+              <div class="cap"><span>Babyboomer</span><span class="mini">Lightbox</span></div>
+            </div>
+
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 4 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-04/1600/1000"
+                 data-alt="Platzhalter Foto 4">
+              <div class="img" aria-label="Platzhalter Foto 4"></div>
+              <div class="cap"><span>Soft Gold</span><span class="mini">Lightbox</span></div>
+            </div>
+
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 5 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-05/1600/1000"
+                 data-alt="Platzhalter Foto 5">
+              <div class="img" aria-label="Platzhalter Foto 5"></div>
+              <div class="cap"><span>Classic Clean</span><span class="mini">Lightbox</span></div>
+            </div>
+
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 6 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-06/1600/1000"
+                 data-alt="Platzhalter Foto 6">
+              <div class="img" aria-label="Platzhalter Foto 6"></div>
+              <div class="cap"><span>Micro Art</span><span class="mini">Lightbox</span></div>
+            </div>
+
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 7 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-07/1600/1000"
+                 data-alt="Platzhalter Foto 7">
+              <div class="img" aria-label="Platzhalter Foto 7"></div>
+              <div class="cap"><span>Milky Nude</span><span class="mini">Lightbox</span></div>
+            </div>
+
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 8 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-08/1600/1000"
+                 data-alt="Platzhalter Foto 8">
+              <div class="img" aria-label="Platzhalter Foto 8"></div>
+              <div class="cap"><span>Gloss Finish</span><span class="mini">Lightbox</span></div>
+            </div>
+
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 9 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-09/1600/1000"
+                 data-alt="Platzhalter Foto 9">
+              <div class="img" aria-label="Platzhalter Foto 9"></div>
+              <div class="cap"><span>Minimal French</span><span class="mini">Lightbox</span></div>
+            </div>
+
+            <!-- IMAGE PLACEHOLDER: GALLERY ITEM 10 -->
+            <div class="tile" role="button" tabindex="0"
+                 data-full="https://picsum.photos/seed/velvet-nails-10/1600/1000"
+                 data-alt="Platzhalter Foto 10">
+              <div class="img" aria-label="Platzhalter Foto 10"></div>
+              <div class="cap"><span>Neutral Chic</span><span class="mini">Lightbox</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preise -->
+    <section class="section" id="preise" aria-label="Preise">
+      <div class="container">
+        <div class="split">
+          <div>
+            <div class="kicker reveal" data-reveal>Preise</div>
+            <h2 class="h2 reveal" data-reveal>Klar. Premium. Transparent.</h2>
+            <p class="sub reveal" data-reveal>
+              Unsere Pakete sind als Orientierung gedacht (Demo). Vor Ort passen wir Länge, Form & Design an deinen Look an.
+            </p>
+          </div>
+          <div class="pill reveal" data-reveal>
+            <svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>
+            Beliebte Slots schnell weg
+          </div>
+        </div>
+
+        <div class="pricing">
+          <div class="card plan reveal" data-reveal data-stagger>
+            <div class="top">
+              <div>
+                <h3>Basic</h3>
+                <div class="muted2" style="margin-top:.2rem;">Clean & polished</div>
+              </div>
+              <span class="tag">ab</span>
+            </div>
+            <div class="money">69 €</div>
+            <ul>
+              <li>Russian Manicure light</li>
+              <li>Short / Natural Shape</li>
+              <li>One-color Nude / Cream</li>
+              <li>High-gloss Top Coat</li>
+            </ul>
+            <div class="note">Ideal für den Alltag – minimal, aber sofort „done“.</div>
+            <a href="#" class="btn demo-action" data-demo="Demo: Termin für Basic Paket anfragen.">Termin anfragen</a>
+          </div>
+
+          <div class="card plan featured reveal" data-reveal data-stagger>
+            <div class="top">
+              <div>
+                <h3>Signature</h3>
+                <div class="muted2" style="margin-top:.2rem;">Unser Bestseller</div>
+              </div>
+              <span class="tag">Beliebt</span>
+            </div>
+            <div class="money">99 €</div>
+            <ul>
+              <li>Russian Manicure precision</li>
+              <li>Gel Modellage / Refill</li>
+              <li>French / Babyboomer Option</li>
+              <li>Cuticle Oil Finish</li>
+            </ul>
+            <div class="note">Der Look, den man sofort wiedererkennt.</div>
+            <a href="#" class="btn primary demo-action" data-demo="Demo: Termin für Signature Paket anfragen.">
+              Termin anfragen <span class="shine" aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="card plan reveal" data-reveal data-stagger>
+            <div class="top">
+              <div>
+                <h3>Luxury</h3>
+                <div class="muted2" style="margin-top:.2rem;">Editorial glow</div>
+              </div>
+              <span class="tag">Premium</span>
+            </div>
+            <div class="money">149 €</div>
+            <ul>
+              <li>Hard Gel / Strength Build</li>
+              <li>Signature Shape Sculpt</li>
+              <li>Chrome / Micro Nail Art</li>
+              <li>SPA Handpflege add-on</li>
+            </ul>
+            <div class="note">Für besondere Anlässe – oder einfach, weil du es willst.</div>
+            <a href="#" class="btn demo-action" data-demo="Demo: Termin für Luxury Paket anfragen.">Termin anfragen</a>
+          </div>
+        </div>
+
+        <div style="margin-top:1.1rem; display:flex; justify-content:center;">
+          <a href="#" class="btn demo-action" data-demo="Demo: Hier würde die Termin-Anfrage öffnen.">
+            Termin anfragen <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bewertungen -->
+    <section class="section" id="bewertungen" aria-label="Bewertungen">
+      <div class="container">
+        <div class="split">
+          <div>
+            <div class="kicker reveal" data-reveal>Bewertungen</div>
+            <h2 class="h2 reveal" data-reveal>Leise Luxus. Lautes Feedback.</h2>
+            <p class="sub reveal" data-reveal>
+              4,9/5 bei 120+ Kundinnen (Demo) – weil Details bei uns nicht „extra“ sind.
+            </p>
+          </div>
+          <div class="pill reveal" data-reveal>
+            <svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg>
+            ★★★★★ • Social Proof (Demo)
+          </div>
+        </div>
+
+        <div class="testimonials">
+          <article class="card tcard reveal" data-reveal data-stagger>
+            <div class="stars" aria-label="5 Sterne">
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+            </div>
+            <p>„So sauber gearbeitet, dass es fast unreal wirkt. Ich bekomme ständig Komplimente – selbst ohne Nail Art.“</p>
+            <div class="tmeta">
+              <span>Sabrina K.</span><span>Wien</span>
+            </div>
+          </article>
+
+          <article class="card tcard reveal" data-reveal data-stagger>
+            <div class="stars" aria-label="5 Sterne">
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+            </div>
+            <p>„Die Russian Manicure ist next level. Kein Ziepen, keine Rötung – einfach nur perfekt.“</p>
+            <div class="tmeta">
+              <span>Julia M.</span><span>1010</span>
+            </div>
+          </article>
+
+          <article class="card tcard reveal" data-reveal data-stagger>
+            <div class="stars" aria-label="5 Sterne">
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+            </div>
+            <p>„Endlich ein Studio, das Luxus ruhig ausstrahlt. Pünktlich, hygienisch, wunderschöne Formen.“</p>
+            <div class="tmeta">
+              <span>Nina L.</span><span>Wien</span>
+            </div>
+          </article>
+
+          <article class="card tcard reveal" data-reveal data-stagger>
+            <div class="stars" aria-label="5 Sterne">
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+            </div>
+            <p>„Mein Refill hält wirklich. Dünn, stabil, kein Lift. Genau das Premium-Gefühl, das ich gesucht habe.“</p>
+            <div class="tmeta">
+              <span>Lea S.</span><span>Wien</span>
+            </div>
+          </article>
+
+          <article class="card tcard reveal" data-reveal data-stagger>
+            <div class="stars" aria-label="5 Sterne">
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+            </div>
+            <p>„Die Atmosphäre ist so calm & clean. Man fühlt sich sofort gut aufgehoben – und geht mit Wow-Nägeln.“</p>
+            <div class="tmeta">
+              <span>Anna P.</span><span>Wien</span>
+            </div>
+          </article>
+
+          <article class="card tcard reveal" data-reveal data-stagger>
+            <div class="stars" aria-label="5 Sterne">
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+              <svg aria-hidden="true"><use href="#i-star"></use></svg>
+            </div>
+            <p>„Die Details! Meine French-Linie ist messerscharf. Ich buche jetzt fix vor – sonst ist alles weg.“</p>
+            <div class="tmeta">
+              <span>Michelle R.</span><span>Wien</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Über uns -->
+    <section class="section" id="ueberuns" aria-label="Über uns">
+      <div class="container">
+        <div class="kicker reveal" data-reveal>Über uns</div>
+        <h2 class="h2 reveal" data-reveal>Qualität, die man nicht erklären muss.</h2>
+
+        <div class="about">
+          <div class="editorial reveal" data-reveal>
+            <p class="sub" style="margin:0;">
+              Im <strong>VELVET NAIL ATELIER</strong> setzen wir auf leise Perfektion:
+              saubere Vorbereitung, präzise Formen, luxuriöse Materialien.
+              Für uns ist Hygiene nicht „ein Punkt“, sondern der Standard.
+              Und weil wir lieber <em>richtig</em> arbeiten als schnell,
+              vergeben wir bewusst nur eine begrenzte Anzahl an Terminen pro Woche.
+            </p>
+
+            <div style="margin-top:1.1rem; display:grid; gap:.65rem; position:relative; z-index:1;">
+              <div class="pill">
+                <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+                Sterilisationsroutine & Einweg-Standards (Demo)
+              </div>
+              <div class="pill">
+                <svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg>
+                Nude/Beige Curated Palette • Soft Gold Accents
+              </div>
+            </div>
+          </div>
+
+          <div class="card founder reveal" data-reveal>
+            <!-- IMAGE PLACEHOLDER: TEAM / FOUNDER PHOTO -->
+            <div class="portrait" role="img" aria-label="Platzhalter für Team- oder Founder-Foto"></div>
+            <div>
+              <div class="kicker">Founder (Demo)</div>
+              <div style="font-family:var(--serif); font-size:1.35rem; font-weight:600; margin:.25rem 0 .35rem;">Lumière Studio Team</div>
+              <div class="fine">
+                „Luxus ist ein Gefühl. Und es beginnt bei den Händen.“
+                Wir lieben klare Linien, ruhige Farben und ein Finish, das einfach hält.
+              </div>
+            </div>
+            <a href="#" class="btn demo-action" data-demo="Demo: Hier würde eine Team/Studio-Story Seite öffnen.">
+              Unsere Story <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontakt / CTA -->
+    <section class="section" id="kontakt" aria-label="Kontakt">
+      <div class="container">
+        <div class="kicker reveal" data-reveal>Kontakt</div>
+        <h2 class="h2 reveal" data-reveal>Bereit für deinen Signature Look?</h2>
+
+        <div class="contact-grid">
+          <div class="card cta-card reveal" data-reveal>
+            <p class="sub" style="margin:0; position:relative; z-index:1;">
+              Sag uns deinen Wunschtermin – wir melden uns mit passenden Slots.
+              Schnell & klar. Ohne Hin-und-Her.
+            </p>
+
+            <div class="contact-actions">
+              <a href="#" class="btn primary demo-action" data-demo="Demo: Hier würde die Termin-Anfrage öffnen.">
+                Termin anfragen <svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>
+                <span class="shine" aria-hidden="true"></span>
+              </a>
+              <a href="#" class="btn demo-action" data-demo="Demo: Hier würde WhatsApp öffnen.">
+                <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg>
+                WhatsApp
+              </a>
+              <a href="#" class="btn demo-action" data-demo="Demo: Hier würde Instagram öffnen.">
+                <svg class="icon" aria-hidden="true"><use href="#i-ig"></use></svg>
+                Instagram
+              </a>
+            </div>
+
+            <div style="margin-top:1rem; position:relative; z-index:1;">
+              <div class="pill">
+                <svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg>
+                4,9/5 • 120+ Kundinnen (Demo)
+              </div>
+              <div class="fine" style="margin-top:.7rem;">
+                Für Events (Hochzeit, Business Trip, Urlaub): am besten früh anfragen – die beliebtesten Zeiten gehen zuerst.
+              </div>
+            </div>
+          </div>
+
+          <div class="card info reveal" data-reveal>
+            <div class="info-row">
+              <span class="icon" aria-hidden="true"><svg><use href="#i-pin"></use></svg></span>
+              <div>
+                <strong>Adresse</strong><br />
+                1010 Wien (Demo) • Nähe Stephansplatz
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="icon" aria-hidden="true"><svg><use href="#i-phone"></use></svg></span>
+              <div>
+                <strong>Telefon</strong><br />
+                +43 1 234 56 78 (Demo)
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="icon" aria-hidden="true"><svg><use href="#i-calendar"></use></svg></span>
+              <div>
+                <strong>Öffnungszeiten</strong>
+                <ul class="hours">
+                  <li>Mo–Fr: 10:00–19:00</li>
+                  <li>Sa: 10:00–16:00</li>
+                  <li>So: geschlossen</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card map-card" style="position:relative; z-index:1;">
+              <div class="kicker" style="margin:.25rem .15rem .65rem;">Karte</div>
+              <div class="map" aria-label="Google Maps Karte (Demo)">
+                <!-- Google Maps Embed (no API key) -->
+                <iframe
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=Stephansplatz,+1010+Wien&output=embed"
+                  title="Google Maps – Stephansplatz, 1010 Wien (Demo)">
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer aria-label="Footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="logo" style="font-family:var(--serif);font-weight:600;letter-spacing:.02em;">VELVET NAIL ATELIER</div>
+          <div class="muted2" style="margin-top:.35rem;">Feminin. Luxuriös. Clean. • Wien 1010 (Demo)</div>
+
+          <div class="social">
+            <a href="#" class="btn icon demo-action" data-demo="Demo: Hier würde Instagram öffnen." aria-label="Instagram">
+              <svg class="icon" aria-hidden="true"><use href="#i-ig"></use></svg>
+            </a>
+            <a href="#" class="btn icon demo-action" data-demo="Demo: Hier würde WhatsApp öffnen." aria-label="WhatsApp">
+              <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg>
+            </a>
+            <a href="#" class="btn icon demo-action" data-demo="Demo: Hier würde die Terminbuchung öffnen." aria-label="Jetzt buchen">
+              <svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>
+            </a>
+          </div>
+
+          <div class="legal">Impressum (Demo) • Datenschutz (Demo) • © <span id="year"></span></div>
+        </div>
+
+        <div>
+          <div class="footer-links" aria-label="Footer Links">
+            <a href="#leistungen">Leistungen</a>
+            <a href="#galerie">Galerie</a>
+            <a href="#preise">Preise</a>
+            <a href="#bewertungen">Bewertungen</a>
+            <a href="#ueberuns">Über uns</a>
+            <a href="#kontakt">Kontakt</a>
+          </div>
+          <div class="fine" style="margin-top:1rem;">
+            Demo-Website für ein Nagelstudio in Österreich. Ersetze die markierten Platzhalter-Bereiche durch echte Fotos
+            und verknüpfe die CTAs mit deinem Buchungssystem.
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" aria-label="Galerie Lightbox">
+    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Bildvorschau">
+      <div class="lightbox-img">
+        <img id="lightboxImg" alt="" src="" />
+      </div>
+      <div class="lightbox-bar">
+        <div id="lightboxCaption">Galerie</div>
+        <div class="lightbox-actions">
+          <button class="lb-btn" id="prevBtn" aria-label="Vorheriges Bild">
+            <svg class="icon" aria-hidden="true"><use href="#i-chev"></use></svg>
+          </button>
+          <button class="lb-btn" id="nextBtn" aria-label="Nächstes Bild" style="transform: rotate(180deg);">
+            <svg class="icon" aria-hidden="true"><use href="#i-chev"></use></svg>
+          </button>
+          <button class="lb-btn" id="closeLb" aria-label="Lightbox schließen">
+            <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
+
+  <script>
+    (() => {
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Mark loaded for hero animations
+      window.addEventListener('load', () => {
+        document.body.classList.add('is-loaded');
+      }, { once: true });
+
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Smooth scroll for internal anchors
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+
+        const href = a.getAttribute('href');
+        if (href === '#') return; // handled by demo-action
+        const el = document.querySelector(href);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+          closeDrawer();
+        }
+      });
+
+      // Demo actions -> Toast
+      const toasts = document.getElementById('toasts');
+      function showToast(title, message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `
+          <div style="display:grid; gap:.15rem;">
+            <div style="font-weight:650; letter-spacing:.01em;">${escapeHtml(title)}</div>
+            <div class="small">${escapeHtml(message)}</div>
+          </div>
+          <button class="x" aria-label="Toast schließen">
+            <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+          </button>
+        `;
+        const closeBtn = toast.querySelector('.x');
+        const remove = () => {
+          toast.style.animation = 'toastOut .22s var(--ease) forwards';
+          setTimeout(() => toast.remove(), 220);
+        };
+        closeBtn.addEventListener('click', remove);
+        toasts.appendChild(toast);
+        setTimeout(remove, 4200);
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#039;');
+      }
+
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.demo-action');
+        if (!btn) return;
+        e.preventDefault();
+        const msg = btn.getAttribute('data-demo') || 'Demo: Aktion würde hier ausführen.';
+        showToast('Demo', msg);
+      });
+
+      // Drawer open/close
+      const drawer = document.getElementById('drawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      const openBtn = document.getElementById('openDrawer');
+      const closeBtn = document.getElementById('closeDrawer');
+
+      function openDrawer() {
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+        drawer.setAttribute('aria-hidden', 'false');
+        backdrop.setAttribute('aria-hidden', 'false');
+        openBtn && openBtn.setAttribute('aria-expanded', 'true');
+        // Focus first link for accessibility
+        const firstLink = drawer.querySelector('.drawer-link');
+        firstLink && firstLink.focus({ preventScroll: true });
+        document.body.style.overflow = 'hidden';
+      }
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+        backdrop.setAttribute('aria-hidden', 'true');
+        openBtn && openBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      openBtn && openBtn.addEventListener('click', () => openDrawer());
+      closeBtn && closeBtn.addEventListener('click', () => closeDrawer());
+      backdrop && backdrop.addEventListener('click', () => closeDrawer());
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeDrawer();
+          closeLightbox();
+        }
+      });
+
+      // Scroll reveal (IntersectionObserver + stagger)
+      const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+      if (!prefersReduced && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            el.classList.add('in');
+            io.unobserve(el);
+          });
+        }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+
+        // Apply stagger via CSS transition-delay
+        let staggerIndex = 0;
+        revealEls.forEach((el) => {
+          const stagger = el.hasAttribute('data-stagger');
+          if (stagger) {
+            const delay = Math.min(240, staggerIndex * 55);
+            el.style.transitionDelay = (delay / 1000).toFixed(2) + 's';
+            staggerIndex++;
+          }
+          io.observe(el);
+        });
+      } else {
+        revealEls.forEach(el => el.classList.add('in'));
+      }
+
+      // Parallax (throttled via rAF)
+      const parallaxEls = Array.from(document.querySelectorAll('.parallax[data-parallax]'));
+      let ticking = false;
+
+      function onScroll() {
+        if (prefersReduced || parallaxEls.length === 0) return;
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY || window.pageYOffset;
+          parallaxEls.forEach((el) => {
+            const factor = parseFloat(el.getAttribute('data-parallax')) || 0.15;
+            // Only apply when near viewport for performance
+            const rect = el.getBoundingClientRect();
+            const inRange = rect.bottom > -200 && rect.top < window.innerHeight + 200;
+            if (!inRange) return;
+            const translate = (y * factor) * -0.12; // subtle
+            el.style.transform = `translate3d(0, ${translate.toFixed(2)}px, 0)`;
+          });
+          ticking = false;
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Lightbox
+      const gallery = document.getElementById('gallery');
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      const lbCap = document.getElementById('lightboxCaption');
+      const closeLbBtn = document.getElementById('closeLb');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      let items = [];
+      let activeIndex = 0;
+
+      function collectItems() {
+        items = Array.from(gallery.querySelectorAll('.tile')).map((tile) => ({
+          full: tile.getAttribute('data-full'),
+          alt: tile.getAttribute('data-alt') || 'Galerie Bild',
+          title: tile.querySelector('.cap span')?.textContent?.trim() || 'Galerie'
+        }));
+      }
+      collectItems();
+
+      function openLightbox(index) {
+        if (!items.length) return;
+        activeIndex = (index + items.length) % items.length;
+        const it = items[activeIndex];
+
+        lbImg.src = it.full;
+        lbImg.alt = it.alt;
+        lbCap.textContent = it.title;
+
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        // Focus close button for accessibility
+        closeLbBtn && closeLbBtn.focus({ preventScroll: true });
+      }
+
+      function closeLightbox() {
+        if (!lightbox.classList.contains('open')) return;
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        // Clear src after animation to prevent flash on next open
+        setTimeout(() => { lbImg.src = ''; }, 180);
+      }
+
+      function prev() { openLightbox(activeIndex - 1); }
+      function next() { openLightbox(activeIndex + 1); }
+
+      gallery.addEventListener('click', (e) => {
+        const tile = e.target.closest('.tile');
+        if (!tile) return;
+        const idx = Array.from(gallery.querySelectorAll('.tile')).indexOf(tile);
+        openLightbox(idx);
+      });
+
+      gallery.addEventListener('keydown', (e) => {
+        const tile = e.target.closest('.tile');
+        if (!tile) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const idx = Array.from(gallery.querySelectorAll('.tile')).indexOf(tile);
+          openLightbox(idx);
+        }
+      });
+
+      closeLbBtn.addEventListener('click', closeLightbox);
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
+
+      lightbox.addEventListener('click', (e) => {
+        // Close if clicking outside inner dialog
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // Keyboard navigation in lightbox
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+      });
+
+      // If fonts load late, still allow hero animations
+      // (No-op: class added on load; safe fallback)
+
+    })();
+  </script>
+</body>
+</html>
