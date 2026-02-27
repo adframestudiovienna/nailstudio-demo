@@ -1443,6 +1443,87 @@
 
     /* Subtle top offset for anchored sections */
     section[id]{ scroll-margin-top: calc(var(--header-h) + 18px); }
+
+    /* === FIXES + IMAGE FRAME RULES (minimal overrides) === */
+
+    /* Image sizing rules: 1:1 everywhere (except portrait 4:3) */
+    .hero-img,
+    .polaroid .thumb,
+    .shot,
+    .tile .img{
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      height: auto;
+    }
+    .shot.one, .shot.two, .shot.three{ height: auto; }
+    .hero-img,
+    .polaroid .thumb,
+    .shot .ph,
+    .tile .img,
+    .portrait{
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    /* ensure gallery tiles stay 1:1 (override varying ratios) */
+    .masonry .tile .img{ aspect-ratio: 1 / 1; }
+
+    /* Portrait must remain 4:3 (already) */
+    .portrait{
+      aspect-ratio: 4 / 3;
+    }
+
+    /* Desktop Contact overflow fix (keep visuals) */
+    .card.info{
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .info{ box-sizing: border-box; overflow: hidden; }
+    .info-row{ min-width: 0; }
+    .info-row div{ min-width: 0; word-break: break-word; }
+    .hours{ margin-top: .1rem; }
+
+    /* Mobile header + hero spacing fix */
+    @media (max-width: 979.98px){
+      :root{ --header-h: 96px; }
+      .header{
+        height: auto;
+        min-height: var(--header-h);
+        padding: .65rem 0;
+      }
+      .header-inner{
+        grid-template-columns: 1fr auto;
+      }
+      .brand{ gap: .6rem; }
+      .brand .logo{
+        font-size: 1rem;
+        white-space: normal;
+        line-height: 1.12;
+        max-width: 18ch;
+      }
+      .brand .subline{
+        padding-left: .6rem;
+        max-width: 12ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .header-actions{ gap: .45rem; }
+      .header-actions .btn.primary{
+        padding: .78rem .9rem;
+        font-size: .95rem;
+      }
+      .header-actions .btn.icon,
+      .hamburger{
+        width: 42px;
+        height: 42px;
+      }
+      .hero{
+        padding-top: calc(var(--header-h) + clamp(1.4rem, 1.1rem + 2.2vw, 2.4rem));
+      }
+    }
+    @media (max-width: 420px){
+      .brand .subline{ display: none; }
+    }
   </style>
 </head>
 
@@ -1612,12 +1693,12 @@
         <div class="hero-visual load-anim" aria-label="Hero Visual">
           <div class="hero-card parallax" data-parallax="0.18">
             <!-- IMAGE PLACEHOLDER: HERO MAIN IMAGE (replace with real studio / nails image) -->
-            <div class="hero-img" role="img" aria-label="Platzhalterbild für Nägel und Studioästhetik"></div>
+            <div class="hero-img" role="img" aria-label="Platzhalterbild für Nägel und Studioästhetik" style="background-image:url('images/hero-main.jpg');"></div>
 
             <!-- Polaroid overlay -->
             <div class="polaroid parallax" data-parallax="0.28" aria-label="Polaroid Highlight">
               <!-- IMAGE PLACEHOLDER: POLAROID THUMB (replace with close-up nail photo) -->
-              <div class="thumb" role="img" aria-label="Platzhalter für Polaroid Foto"></div>
+              <div class="thumb" role="img" aria-label="Platzhalter für Polaroid Foto" style="background-image:url('images/hero-detail.jpg');"></div>
               <div class="cap">Signature Finish • ultra clean</div>
             </div>
 
@@ -1804,15 +1885,15 @@
           <div class="stack" aria-label="Überlappende Bilder">
             <!-- IMAGE PLACEHOLDER: SIGNATURE LOOKS IMAGE 1 -->
             <div class="shot one parallax" data-parallax="0.25" role="img" aria-label="Platzhalterbild 1">
-              <div class="ph"></div>
+              <div class="ph" style="background-image:url('images/studio-interior-vienna.jpg');"></div>
             </div>
             <!-- IMAGE PLACEHOLDER: SIGNATURE LOOKS IMAGE 2 -->
             <div class="shot two parallax" data-parallax="0.18" role="img" aria-label="Platzhalterbild 2">
-              <div class="ph"></div>
+              <div class="ph" style="background-image:url('images/nail-artist-bei-der-arbeit.jpg');"></div>
             </div>
             <!-- IMAGE PLACEHOLDER: SIGNATURE LOOKS IMAGE 3 -->
             <div class="shot three parallax" data-parallax="0.32" role="img" aria-label="Platzhalterbild 3">
-              <div class="ph"></div>
+              <div class="ph" style="background-image:url('images/luxus-nagelstudio-wien-innenraum.jpg');"></div>
             </div>
           </div>
         </div>
@@ -1839,81 +1920,81 @@
           <div class="masonry" id="gallery">
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 1 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-01/1600/1000"
+                 data-full="images/gallery-clean-french.jpg"
                  data-alt="Platzhalter Foto 1">
-              <div class="img" aria-label="Platzhalter Foto 1"></div>
+              <div class="img" aria-label="Platzhalter Foto 1" style="background-image:url('images/gallery-clean-french.jpg');"></div>
               <div class="cap"><span>Nude French</span><span class="mini">Lightbox</span></div>
             </div>
 
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 2 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-02/1600/1000"
+                 data-full="images/gallery-milky-nude.jpg"
                  data-alt="Platzhalter Foto 2">
-              <div class="img" aria-label="Platzhalter Foto 2"></div>
+              <div class="img" aria-label="Platzhalter Foto 2" style="background-image:url('images/gallery-milky-nude.jpg');"></div>
               <div class="cap"><span>Chrome Accent</span><span class="mini">Lightbox</span></div>
             </div>
 
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 3 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-03/1600/1000"
+                 data-full="images/gallery-chrome-glazed.jpg"
                  data-alt="Platzhalter Foto 3">
-              <div class="img" aria-label="Platzhalter Foto 3"></div>
+              <div class="img" aria-label="Platzhalter Foto 3" style="background-image:url('images/gallery-chrome-glazed.jpg');"></div>
               <div class="cap"><span>Babyboomer</span><span class="mini">Lightbox</span></div>
             </div>
 
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 4 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-04/1600/1000"
+                 data-full="images/gallery-micro-french.jpg"
                  data-alt="Platzhalter Foto 4">
-              <div class="img" aria-label="Platzhalter Foto 4"></div>
+              <div class="img" aria-label="Platzhalter Foto 4" style="background-image:url('images/gallery-micro-french.jpg');"></div>
               <div class="cap"><span>Soft Gold</span><span class="mini">Lightbox</span></div>
             </div>
 
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 5 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-05/1600/1000"
+                 data-full="images/gallery-babyboomer.jpg"
                  data-alt="Platzhalter Foto 5">
-              <div class="img" aria-label="Platzhalter Foto 5"></div>
+              <div class="img" aria-label="Platzhalter Foto 5" style="background-image:url('images/gallery-babyboomer.jpg');"></div>
               <div class="cap"><span>Classic Clean</span><span class="mini">Lightbox</span></div>
             </div>
 
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 6 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-06/1600/1000"
+                 data-full="images/gallery-cat-eye.jpg"
                  data-alt="Platzhalter Foto 6">
-              <div class="img" aria-label="Platzhalter Foto 6"></div>
+              <div class="img" aria-label="Platzhalter Foto 6" style="background-image:url('images/gallery-cat-eye.jpg');"></div>
               <div class="cap"><span>Micro Art</span><span class="mini">Lightbox</span></div>
             </div>
 
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 7 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-07/1600/1000"
+                 data-full="images/gallery-detail-macro.jpg"
                  data-alt="Platzhalter Foto 7">
-              <div class="img" aria-label="Platzhalter Foto 7"></div>
+              <div class="img" aria-label="Platzhalter Foto 7" style="background-image:url('images/gallery-detail-macro.jpg');"></div>
               <div class="cap"><span>Milky Nude</span><span class="mini">Lightbox</span></div>
             </div>
 
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 8 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-08/1600/1000"
+                 data-full="images/gallery-lifestyle-hand.jpg"
                  data-alt="Platzhalter Foto 8">
-              <div class="img" aria-label="Platzhalter Foto 8"></div>
+              <div class="img" aria-label="Platzhalter Foto 8" style="background-image:url('images/gallery-lifestyle-hand.jpg');"></div>
               <div class="cap"><span>Gloss Finish</span><span class="mini">Lightbox</span></div>
             </div>
 
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 9 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-09/1600/1000"
+                 data-full="images/gallery-ring-closeup.jpg"
                  data-alt="Platzhalter Foto 9">
-              <div class="img" aria-label="Platzhalter Foto 9"></div>
+              <div class="img" aria-label="Platzhalter Foto 9" style="background-image:url('images/gallery-ring-closeup.jpg');"></div>
               <div class="cap"><span>Minimal French</span><span class="mini">Lightbox</span></div>
             </div>
 
             <!-- IMAGE PLACEHOLDER: GALLERY ITEM 10 -->
             <div class="tile" role="button" tabindex="0"
-                 data-full="https://picsum.photos/seed/velvet-nails-10/1600/1000"
+                 data-full="images/gallery-ring-closeup.jpg"
                  data-alt="Platzhalter Foto 10">
-              <div class="img" aria-label="Platzhalter Foto 10"></div>
+              <div class="img" aria-label="Platzhalter Foto 10" style="background-image:url('images/gallery-ring-closeup.jpg');"></div>
               <div class="cap"><span>Neutral Chic</span><span class="mini">Lightbox</span></div>
             </div>
           </div>
@@ -2142,7 +2223,7 @@
 
           <div class="card founder reveal" data-reveal>
             <!-- IMAGE PLACEHOLDER: TEAM / FOUNDER PHOTO -->
-            <div class="portrait" role="img" aria-label="Platzhalter für Team- oder Founder-Foto"></div>
+            <div class="portrait" role="img" aria-label="Platzhalter für Team- oder Founder-Foto" style="background-image:url('images/founder-nagelstudio-wien.jpg');"></div>
             <div>
               <div class="kicker">Founder (Demo)</div>
               <div style="font-family:var(--serif); font-size:1.35rem; font-weight:600; margin:.25rem 0 .35rem;">Lumière Studio Team</div>
